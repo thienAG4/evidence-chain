@@ -2,6 +2,9 @@
 
 > **Hệ thống lưu vết và đối chiếu bằng chứng số trên Ethereum Sepolia phục vụ giải quyết tranh chấp tại tòa án.**
 
+🚀 **Trải nghiệm trực tuyến (Live Demo Vercel):** [https://frontend-ten-livid-sfuyxmuif5.vercel.app/](https://frontend-ten-livid-sfuyxmuif5.vercel.app/)  
+📦 **Kho mã nguồn GitHub:** [https://github.com/thienAG4/evidence-chain](https://github.com/thienAG4/evidence-chain) (Private)
+
 Evidence Chain giải quyết bài toán chống giả mạo và chứng thực mốc thời gian của chứng cứ số (ảnh, video, ghi âm, tài liệu, PDF) bằng cách tính mã băm mật mã SHA-256 dạng stream, neo mã băm này vào trường `Input Data` của giao dịch EIP-1559 trên mạng Ethereum Sepolia (không dùng smart contract phức tạp), và cấp biên nhận pháp lý kỹ thuật có thể đối chiếu độc lập bất kỳ lúc nào.
 
 ---
@@ -166,7 +169,7 @@ Hệ thống Evidence Chain được tách biệt thành 2 tầng microservice c
 - **Backend (FastAPI + Web3.py + SQLite):** Triển khai Web Service trên đám mây **Render**.
 
 ### 1. Frontend trên Vercel (Đã triển khai thành công)
-- **Production URL:** [https://frontend-ten-livid-sfuyxmuif5.vercel.app](https://frontend-ten-livid-sfuyxmuif5.vercel.app)
+- **Production URL:** [https://frontend-ten-livid-sfuyxmuif5.vercel.app/](https://frontend-ten-livid-sfuyxmuif5.vercel.app/)
 - **Vercel Dashboard:** [https://vercel.com/thiens-projects-7b021fa2/frontend](https://vercel.com/thiens-projects-7b021fa2/frontend)
 - Đã cấu hình `frontend/vercel.json` định tuyến SPA (Single Page Application) cho toàn bộ các tab `/verify`, `/evidence`, `/logs`.
 
