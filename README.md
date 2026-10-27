@@ -159,7 +159,42 @@ Thuật toán SHA-256 nạp và tính toán **toàn bộ dòng byte nhị phân*
 
 ---
 
+## 🚀 Hướng dẫn Triển khai Production (Vercel + Render)
+
+Hệ thống Evidence Chain được tách biệt thành 2 tầng microservice chuẩn đám mây:
+- **Frontend (React 18 + Vite + Tailwind CSS):** Triển khai tĩnh trên mạng CDN toàn cầu của **Vercel**.
+- **Backend (FastAPI + Web3.py + SQLite):** Triển khai Web Service trên đám mây **Render**.
+
+### 1. Frontend trên Vercel (Đã triển khai thành công)
+- **Production URL:** [https://frontend-ten-livid-sfuyxmuif5.vercel.app](https://frontend-ten-livid-sfuyxmuif5.vercel.app)
+- **Vercel Dashboard:** [https://vercel.com/thiens-projects-7b021fa2/frontend](https://vercel.com/thiens-projects-7b021fa2/frontend)
+- Đã cấu hình `frontend/vercel.json` định tuyến SPA (Single Page Application) cho toàn bộ các tab `/verify`, `/evidence`, `/logs`.
+
+### 2. Backend trên Render (1-Click Blueprint)
+Mã nguồn đã tích hợp sẵn file Blueprint [render.yaml](file:///d:/evidence-chain/render.yaml) và [backend/Dockerfile](file:///d:/evidence-chain/backend/Dockerfile).
+
+**Các bước kích hoạt backend Render trong 1 phút:**
+1. Đăng nhập vào [Render Dashboard](https://dashboard.render.com).
+2. Vào **Blueprints** $\rightarrow$ Bấm **New Blueprint Instance**.
+3. Chọn kho mã nguồn GitHub: **`thienAG4/evidence-chain`**.
+4. Render sẽ tự động đọc `render.yaml` và nạp toàn bộ cấu hình:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - **Environment Variables:** Đã cấu hình sẵn `CORS_ORIGINS=*`, `SEPOLIA_RPC_URL`, v.v.
+5. Nhập giá trị bí mật cho biến **`PRIVATE_KEY`** (khóa riêng tư ví Sepolia có gas của bạn).
+6. Bấm **Apply**. Sau khi build xong (khoảng 1-2 phút), Render sẽ cấp cho bạn một URL backend dạng:
+   `https://evidence-chain-backend.onrender.com`
+
+### 3. Kết nối Frontend Vercel với Backend Render
+1. Mở trang cài đặt Vercel: [Frontend Environment Variables](https://vercel.com/thiens-projects-7b021fa2/frontend/settings/environment-variables).
+2. Thêm biến:
+   - **Key:** `VITE_API_BASE_URL`
+   - **Value:** `https://tên-dịch-vụ-của-bạn.onrender.com`
+3. Bấm **Save** và nhấn **Redeploy** trên Vercel. Giao diện trực tuyến sẽ lập tức kết nối trực tiếp với backend đám mây!
+
+---
+
 ## 🔒 Lưu ý bảo mật & Pháp lý kỹ thuật
 
-1. **Khóa riêng (PRIVATE_KEY):** Chỉ lưu trong file `backend/.env`. Tuyệt đối không commit lên Git hay để lộ ra frontend.
+1. **Khóa riêng (PRIVATE_KEY):** Chỉ lưu trong file `backend/.env` hoặc cấu hình bí mật trên Render Dashboard. Tuyệt đối không commit lên Git hay để lộ ra frontend.
 2. **Mạng Sepolia Testnet:** Phục vụ nghiên cứu, thử nghiệm và trình diễn; khi ứng dụng vào thực tế tòa án cần chuyển sang mạng chính thức (Mainnet hoặc L2 tương thích) và tham vấn quy chuẩn giám định điện tử theo quy định pháp luật sở tại.
