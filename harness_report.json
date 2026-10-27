@@ -1,0 +1,160 @@
+{
+  "project": "Evidence Chain",
+  "version": "1.0.0 (MVP)",
+  "network": "Ethereum Sepolia (Chain ID 11155111)",
+  "execution_time": "2026-10-27T15:22:06.625316+00:00",
+  "summary": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "pass_rate_pct": 100.0
+  },
+  "acceptance_criteria": [
+    {
+      "id": "AC1",
+      "title": "Tải ảnh JPG 2MB và neo lên Sepolia (CONFIRMED)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "evidence_id": "EV-20261027-GQ6I4Y",
+        "tx_hash": "0x4932695cd2ceb3f064b808f9506b1c3d073a22dbb5e923295b63cac8db96ee5f",
+        "block_number": 7345201,
+        "status": "CONFIRMED",
+        "explorer_url": "https://sepolia.etherscan.io/tx/0x4932695cd2ceb3f064b808f9506b1c3d073a22dbb5e923295b63cac8db96ee5f"
+      },
+      "timestamp": "2026-10-27T15:21:49.828622+00:00"
+    },
+    {
+      "id": "AC2",
+      "title": "Hỗ trợ tải lên đa định dạng (MP3, MP4, PDF, DOCX, TXT)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "ghi_am.mp3": {
+          "status_code": 201,
+          "evidence_id": "EV-20261027-S7UDOQ",
+          "sha256": "ac9bc9b2659f97616234c0e452e2fb8d390f297dcd8ad49f07b2167986286389"
+        },
+        "camera.mp4": {
+          "status_code": 201,
+          "evidence_id": "EV-20261027-HZTPUN",
+          "sha256": "84a66ae2c3b3d562d36e66bbbe6b974a0385416f239a99850bd82ac14de0e6cd"
+        },
+        "hop_dong.pdf": {
+          "status_code": 201,
+          "evidence_id": "EV-20261027-FGYH1J",
+          "sha256": "99be5522963463afd96aab4c427b75319ff9889559ff40206c5b26e008fde979"
+        },
+        "bien_ban.docx": {
+          "status_code": 201,
+          "evidence_id": "EV-20261027-CS62TG",
+          "sha256": "cebd399548ecfb6fbe9e972c76adfef48f5c7c36ae204ad80ab5e4dbeb033fdf"
+        },
+        "nhat_ky.txt": {
+          "status_code": 201,
+          "evidence_id": "EV-20261027-PNGEJW",
+          "sha256": "908bb7927e0f6583d1276aec4639741c8d4cb375101a3f39767c01b55676ce27"
+        }
+      },
+      "timestamp": "2026-10-27T15:21:55.160796+00:00"
+    },
+    {
+      "id": "AC3",
+      "title": "Độ chính xác SHA-256 (Khớp 100% với hashlib / sha256sum)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "expected_hashlib": "8d4349b3998f0db066b6a8509083b2297edfed55113b075e1e3bb8889b58e9a8",
+        "actual_system": "8d4349b3998f0db066b6a8509083b2297edfed55113b075e1e3bb8889b58e9a8",
+        "match": true
+      },
+      "timestamp": "2026-10-27T15:21:56.222763+00:00"
+    },
+    {
+      "id": "AC4",
+      "title": "Định dạng Input Data trên Sepolia (EVD1:<hash>)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "tx_hash": "0x1158adb017f97acfd7bcf2c8c39217df6f030529e7b60c156173463f2d667b90",
+        "expected_anchor_data": "EVD1:a9e640d10e1614a611b25305aac3f5cd6a66239ae349eca44ce58ad775d83f64",
+        "parsed_sha256": "a9e640d10e1614a611b25305aac3f5cd6a66239ae349eca44ce58ad775d83f64",
+        "valid_format": true,
+        "issuer_is_system_wallet": true
+      },
+      "timestamp": "2026-10-27T15:21:57.288502+00:00"
+    },
+    {
+      "id": "AC5",
+      "title": "Xác minh tệp gốc nguyên vẹn -> VERIFIED (Khớp 100%)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "status": "VERIFIED",
+        "match": true,
+        "computed_sha256": "bb108e2ef01bc539c13ba48159ce8c2fc70facb135b8dbb15a9ebd7dda6a05eb",
+        "onchain_sha256": "bb108e2ef01bc539c13ba48159ce8c2fc70facb135b8dbb15a9ebd7dda6a05eb",
+        "message": "Khớp – tệp nguyên vẹn so với thời điểm ký gửi."
+      },
+      "timestamp": "2026-10-27T15:21:59.621907+00:00"
+    },
+    {
+      "id": "AC6",
+      "title": "Phát hiện tệp bị sửa 1 byte -> MISMATCH / NOT_FOUND",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "tampered_without_id_status": "NOT_FOUND",
+        "tampered_with_id_status": "MISMATCH",
+        "match": false,
+        "computed_hash": "1892426c9671b3464257a3adb884eafaa38a0a1c270ad11cffdf14a303ae7b91",
+        "onchain_hash": "d226afdefe0a31b2b70bcea88ce24adb07d176c0f732678f1297616e80b816dd"
+      },
+      "timestamp": "2026-10-27T15:22:01.937699+00:00"
+    },
+    {
+      "id": "AC7",
+      "title": "Phát hiện tệp trùng lặp (duplicate=true, HTTP 200)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "initial_evidence_id": "EV-20261027-EHJZV6",
+        "duplicate_response_status": 200,
+        "duplicate_flag": true,
+        "returned_evidence_id": "EV-20261027-EHJZV6"
+      },
+      "timestamp": "2026-10-27T15:22:04.234142+00:00"
+    },
+    {
+      "id": "AC8",
+      "title": "Bảo vệ & Xử lý lỗi (/api/health, chặn file rỗng & file .exe)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "health_status": "ok",
+        "health_chain_id": 11155111,
+        "exe_rejection_code": "UNSUPPORTED_TYPE",
+        "empty_rejection_code": "EMPTY_FILE"
+      },
+      "timestamp": "2026-10-27T15:22:04.301859+00:00"
+    },
+    {
+      "id": "AC9",
+      "title": "Nhật ký kiểm toán truy vết (X-Request-ID & chuỗi sự kiện)",
+      "status": "PASSED",
+      "passed": true,
+      "details": {
+        "request_id_in_header": true,
+        "captured_events": [
+          "RECEIPT_DOWNLOADED",
+          "TX_CONFIRMED",
+          "TX_SENT",
+          "HASH_COMPUTED",
+          "UPLOAD_RECEIVED"
+        ],
+        "evidence_id": "EV-20261027-51SK1A"
+      },
+      "timestamp": "2026-10-27T15:22:06.625316+00:00"
+    }
+  ]
+}
