@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: evidence-chain-backend
+    env: python
+    region: singapore
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: MOCK_BLOCKCHAIN
+        value: "false"
+      - key: SEPOLIA_RPC_URL
+        value: https://ethereum-sepolia-rpc.publicnode.com
+      - key: CHAIN_ID
+        value: "11155111"
+      - key: EXPLORER_BASE_URL
+        value: https://sepolia.etherscan.io
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: DATABASE_URL
+        value: sqlite:///./data/evidence.db
+      - key: PRIVATE_KEY
+        sync: false

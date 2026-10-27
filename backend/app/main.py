@@ -108,13 +108,13 @@ async def generic_exception_handler(request: Request, exc: Exception):
 app.add_middleware(RequestContextMiddleware)
 
 cors_origins = [origin.strip() for origin in s.CORS_ORIGINS.split(",") if origin.strip()]
-if not cors_origins:
-    cors_origins = ["*"]
+is_wildcard = "*" in cors_origins or not cors_origins
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
-    allow_credentials=True,
+    allow_origins=["*"] if is_wildcard else cors_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app" if not is_wildcard else None,
+    allow_credentials=False if is_wildcard else True,
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["X-Request-ID"]
