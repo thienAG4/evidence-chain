@@ -5,6 +5,9 @@ export function getApiBaseUrl() {
   if (typeof window !== 'undefined') {
     const saved = localStorage.getItem('evidence_api_url')
     if (saved) return saved.replace(/\/+$/, '')
+    if (window.location.hostname.includes('vercel.app')) {
+      return 'https://evidence-chain-backend.onrender.com'
+    }
   }
   return (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '')
 }
